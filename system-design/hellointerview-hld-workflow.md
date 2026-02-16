@@ -13,7 +13,8 @@ This workflow is for practicing each HelloInterview high level design (HLD) prob
 3. Write assumptions. Include target users, traffic, data volume, latency, availability, and compliance.
 4. Identify the primary use cases. Limit to 3 to 5 critical flows.
 5. Break requirements into functional requirements and non functional requirements.
-6. Map each requirement to candidate patterns. Note 1 to 3 patterns per requirement.
+6. Run pattern recognition for features. Tag each feature with likely patterns.
+7. Map each requirement to candidate patterns. Note 1 to 3 patterns per requirement.
 7. Define the system boundary. Specify clients, external services, and trust boundaries.
 8. Draft the API surface. List the main endpoints or RPC calls and request/response shapes.
 9. Define the data model. List key entities, fields, and relationships.
@@ -26,8 +27,9 @@ This workflow is for practicing each HelloInterview high level design (HLD) prob
 16. Add security and privacy. AuthN, AuthZ, encryption, audit, and rate limits.
 17. Run a bottleneck review. Identify the top 3 risks and mitigations.
 18. List alternatives and tradeoffs. Provide at least 2 alternatives.
-19. Summarize the final design in 5 to 8 bullets.
-20. Create a mini quiz with answers. 5 to 10 questions that test the design.
+19. Summarize all approaches. Provide a short comparison table.
+20. Summarize the final design in 5 to 8 bullets.
+21. Create a mini quiz with answers. 5 to 10 questions that test the design.
 
 ## Deliverables
 - A one page summary
@@ -55,6 +57,94 @@ This workflow is for practicing each HelloInterview high level design (HLD) prob
 - Component diagram
 - Sequence diagram for the primary flow
 - Data model diagram
+- Roadmap diagram
+
+## Pattern Recognition Cheat Sheet
+Use this to tag features and map to likely patterns quickly.
+- Feed or timeline: fanout, materialized views, caching, pagination
+- Search: inverted index, ETL, async indexing, query caching
+- Notifications: event bus, outbox pattern, fanout, rate limiting
+- File upload or media: object storage, CDN, async processing, transcoding pipeline
+- Payments or ledger: double entry ledger, idempotency, reconciliation, audit trail
+- Real time updates: pub sub, WebSockets, SSE, backpressure
+- Recommendations: offline batch, online serving, feature store, A/B testing
+- Analytics: event tracking, data lake, batch aggregation, OLAP store
+- High write volume: sharding, append only logs, partitioning
+- High read volume: caching, read replicas, materialized views
+
+## Summary of Approaches Template
+Use this after exploring alternatives.
+- Approach A: core idea, best for, tradeoffs
+- Approach B: core idea, best for, tradeoffs
+- Approach C: core idea, best for, tradeoffs
+
+Comparison Table:
+| Approach | Scale | Complexity | Cost | Latency | Consistency | Pros | Cons | Patterns |
+|---|---|---|---|---|---|---|---|---|
+| A |  |  |  |  |  |  |  |  |
+| B |  |  |  |  |  |  |  |  |
+| C |  |  |  |  |  |  |  |  |
+
+## Mermaid Diagram Templates
+Use these templates as starting points and fill in system specific details.
+
+Context diagram:
+```mermaid
+flowchart LR
+  User((User)) --> Client[Client App]
+  Client --> API[API Gateway]
+  API --> Core[Core Service]
+  Core --> DB[(Primary DB)]
+  Core --> Cache[(Cache)]
+  Core --> MQ[(Queue)]
+  Core --> External[External Service]
+```
+
+Component diagram:
+```mermaid
+flowchart TB
+  API[API Gateway] --> Auth[Auth Service]
+  API --> Core[Core Service]
+  Core --> Read[Read Model]
+  Core --> Write[Write Model]
+  Core --> Cache[(Cache)]
+  Core --> DB[(Database)]
+  Core --> MQ[(Queue)]
+  MQ --> Worker[Async Worker]
+```
+
+Sequence diagram:
+```mermaid
+sequenceDiagram
+  participant U as User
+  participant C as Client
+  participant A as API
+  participant S as Service
+  participant D as DB
+  U->>C: action
+  C->>A: request
+  A->>S: validate and route
+  S->>D: read/write
+  D-->>S: result
+  S-->>A: response
+  A-->>C: response
+```
+
+Data model diagram:
+```mermaid
+erDiagram
+  USER ||--o{ ORDER : places
+  ORDER ||--|{ ORDER_ITEM : contains
+  PRODUCT ||--o{ ORDER_ITEM : included_in
+```
+
+Roadmap diagram:
+```mermaid
+flowchart LR
+  MVP[MVP] --> V1[Scale to 10x]
+  V1 --> V2[Global expansion]
+  V2 --> V3[Cost optimization]
+```
 
 ## Review Checklist
 - Requirements are explicit and measurable
