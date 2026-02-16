@@ -146,6 +146,31 @@ flowchart LR
   V2 --> V3[Cost optimization]
 ```
 
+## Cognitive Learning Additions
+Add these to improve retention and recall.
+- Retrieval practice checkpoints: after Requirements, Architecture, and Tradeoffs, answer 3 quick recall prompts.
+- Spaced repetition schedule: Day 1 review summary and quiz, Day 3 re-explain architecture, Day 7 redraw from memory, Day 14 do a timed mini redo.
+- Error log: record mistakes, wrong assumptions, and corrected reasoning.
+- Teach-back summary: 60 second explanation as if teaching a junior engineer.
+- Variant drill: re-evaluate with a changed constraint (latency, write-heavy, geo, privacy).
+- Constraints-first warmup: 3 minute list of likely bottlenecks before designing.
+- Pattern flashcards: 1 to 2 cards per pattern used, with when-to-use and when-not-to-use.
+- Mental model sketch: one page system-at-a-glance drawing, then redraw from memory later.
+- Timeboxing: set target minutes per phase to avoid drift.
+- Scoring rubric: rate clarity, tradeoffs, risks, and completeness from 1 to 5.
+
+## Cognitive Checklist Template
+- Retrieval prompts answered
+- Spaced review scheduled
+- Error log updated
+- Teach-back recorded
+- Variant drill done
+- Bottlenecks listed first
+- Flashcards created
+- Mental model redrawn
+- Timeboxes followed
+- Self-score recorded
+
 ## Review Checklist
 - Requirements are explicit and measurable
 - Assumptions are stated with numbers
